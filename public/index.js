@@ -99,49 +99,6 @@ const leaveRoom = (event) => {
   identityInput.disabled = false;
 }
 
-const launchConfetti = (selectedEmoji, participant = null) => {
-  switch (selectedEmoji) {
-    case 'heart emoji':
-      jsConfetti.addConfetti({
-        emojis: ['❤️'],
-        emojiSize: 50,
-        confettiNumber: 30,
-        confettiRadius: 3
-      });
-      break;
-    case 'smile emoji':
-      jsConfetti.addConfetti({
-        emojis: ['😄'],
-        emojiSize: 50,
-        confettiNumber: 30,
-        confettiRadius: 3
-      });
-      break;
-    case 'fire emoji':
-      jsConfetti.addConfetti({
-        emojis: ['🔥'],
-        emojiSize: 50,
-        confettiNumber: 30,
-        confettiRadius: 3
-      });
-      break;
-    default:
-      jsConfetti.addConfetti({
-        emojis: ['⭐', '👍', '✨', '🎉', '🌸'],
-        emojiSize: 50,
-        confettiNumber: 30,
-        confettiRadius: 3
-      });
-      break;
-  }
-
-  // If the person who pressed the button to send the emoji is the local participant,
-  // send the emoji to everyone else on the call
-  if (participant && participant.id === 'localParticipant') {
-    localDataTrack.send(selectedEmoji);
-  }
-}
-
 const participantConnected = (participant) => {
   console.log(`${participant.identity} has joined the call.`);
 
@@ -192,6 +149,49 @@ const participantDisconnected = (participant) => {
   console.log(`${participant.identity} has left the call.`);
   document.getElementById(participant.sid).remove();
 };
+
+const launchConfetti = (selectedEmoji, participant = null) => {
+  switch (selectedEmoji) {
+    case 'heart emoji':
+      jsConfetti.addConfetti({
+        emojis: ['❤️'],
+        emojiSize: 50,
+        confettiNumber: 30,
+        confettiRadius: 3
+      });
+      break;
+    case 'smile emoji':
+      jsConfetti.addConfetti({
+        emojis: ['😄'],
+        emojiSize: 50,
+        confettiNumber: 30,
+        confettiRadius: 3
+      });
+      break;
+    case 'fire emoji':
+      jsConfetti.addConfetti({
+        emojis: ['🔥'],
+        emojiSize: 50,
+        confettiNumber: 30,
+        confettiRadius: 3
+      });
+      break;
+    default:
+      jsConfetti.addConfetti({
+        emojis: ['⭐', '👍', '✨', '🎉', '🌸'],
+        emojiSize: 50,
+        confettiNumber: 30,
+        confettiRadius: 3
+      });
+      break;
+  }
+
+  // If the person who pressed the button to send the emoji is the local participant,
+  // send the emoji to everyone else on the call
+  if (participant && participant.id === 'localParticipant') {
+    localDataTrack.send(selectedEmoji);
+  }
+}
 
 // Show the participant a preview of their video
 addLocalVideo();
