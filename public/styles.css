@@ -44,7 +44,8 @@ main {
 }
 
 #reactions canvas {
-  max-height: 500px;
+  height: 700px;
+  width: 100%;
 }
 
 #controls {
